@@ -1,4 +1,4 @@
 @echo off
 
-npm ci --silent
-npm start --silent sample_input\input1.txt
+@REM npm ci --silent
+npm start sample_input\input1.txt
