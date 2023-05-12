@@ -8,7 +8,7 @@ export const vault = () => {
     const journeyDB: Array<journey> = [];
     return {
         balance(name: string, balance: number) {
-            cardDB.push({ name, balance });
+            cardDB.push({ name, balance, journeyCount: 0 });
         },
         checkIn(name: string, passengerType: passengerType, location: location){
             journeyDB.push({ name, passengerType, location });

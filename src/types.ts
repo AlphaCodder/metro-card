@@ -1,6 +1,7 @@
 export interface card {
     name : string,
     balance : number
+    journeyCount : number
 }
 
 export type command = {
@@ -25,4 +26,21 @@ export const charges = {
     ADULT: 200,
     KID: 50,
     SENIOR_CITIZEN : 100,
+}
+
+export const STCollection = {
+    CENTRAL : {
+        "collection": 0,
+        "discount": 0,
+        "ADULT": 0,
+        "KID": 0,
+        "SENIOR_CITIZEN": 0,
+    },
+    AIRPORT : {
+        "collection": 0,
+        "discount": 0,
+        "ADULT": 0,
+        "KID": 0,
+        "SENIOR_CITIZEN": 0,
+    },
 }

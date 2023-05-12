@@ -8,6 +8,6 @@ fs.readFile(filename, "utf8", (err, data) => {
 
     const inputLines: string[] = data.toString().split("\n")
     inputLines.forEach((line) => {
-        console.log(vaultManager(line))
+        vaultManager(line)
     })
 })

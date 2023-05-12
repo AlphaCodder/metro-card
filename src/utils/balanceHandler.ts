@@ -1,4 +1,6 @@
-import { card, journey, location, passengerType, charges } from "../types";
+import { card, journey, location, passengerType, charges, STCollection } from "../types";
+import { fares, SFMultiplier } from "../const";
+import { outputHandler } from "./outputHandler";
 
 // this function will keep track of the balance of the card
 // it will also keep track of the journey history of the card
@@ -10,32 +12,29 @@ import { card, journey, location, passengerType, charges } from "../types";
 
 export const balanceHandler = (cardDB: card[], journeyDB: journey[]) => {
 
-    const stationCollection = {
-        central : {
-            collection: 0,
-            discount: 0,
-            adult: 0,
-            kid: 0,
-            seniorCitizen: 0,
-        },
-        airport : {
-            collection: 0,
-            discount: 0,
-            adult: 0,
-            kid: 0,
-            seniorCitizen: 0,
-        },
-    }
+    const stationCollection = STCollection
 
     journeyDB.forEach(journey => {
-        // select the card from the cardDB with the name of the journey
         const currentCard = cardDB.find(card => card.name === journey.name)
         if(!currentCard) return
 
-        if(currentCard.balance < charges[journey.passengerType]) {
-            
-        currentCard.balance -= charges[journey.passengerType]
+        // if the passenger is doing a return trip give a discount of 50%
+        const currentfare = fares[journey.passengerType] * (currentCard.journeyCount % 2 === 1 ? 0.5 : 1)
+        stationCollection[journey.location].discount += fares[journey.passengerType] - currentfare
+
+        // deduct the fare from the card balance and add it to the station collection
+        if(currentCard.balance < currentfare){
+            stationCollection[journey.location].collection 
+                += currentfare + ((currentfare - currentCard.balance) * SFMultiplier)
+            currentCard.balance = 0
+        }
+        else{
+            stationCollection[journey.location].collection += currentfare
+            currentCard.balance -= currentfare
+        }
+        currentCard.journeyCount += 1
+        stationCollection[journey.location][journey.passengerType] += 1
 
     })
-    return cardDB
+    return outputHandler(stationCollection)
 }
