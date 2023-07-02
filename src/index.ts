@@ -1,13 +1,14 @@
-import fs from "fs"
-import { vaultManager } from "./vaultManager"
+import fs from 'fs'
+import { inputParser } from "./utils/inputParser"
+import { inputHandler } from './utils/inputHandler'
+import { initCollection } from './utils/initCollection'
 
-const filename = process.argv[2]
+initCollection()
 
-fs.readFile(filename, "utf8", (err, data) => {
-    if (err) { throw err }
-
-    const inputLines: string[] = data.toString().split("\n")
-    inputLines.forEach((line) => {
-        vaultManager(line)
+fs.readFile(process.argv[2], "utf8", (err, data) => {
+    if (err) { throw err.message }
+    const dataLines = data.split('\n')
+    dataLines.map((data) => {
+        console.log(inputHandler(inputParser(data)))
     })
 })
