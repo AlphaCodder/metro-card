@@ -3,7 +3,7 @@ import { getCollection } from "./collection"
 
 export const outputParser = (location: locationType) => {
   const locationCollection: collection = getCollection(location)
-  var output = `TOTAL_COLLECTION CENTRAL ${locationCollection.total} ${locationCollection.discount}\n`
+  var output = `TOTAL_COLLECTION ${location} ${locationCollection.total} ${locationCollection.discount}\n`
                + `PASSENGER_TYPE_SUMMARY\n`
 
   const passengerType = locationCollection.passengerTypeSummary
@@ -17,7 +17,7 @@ export const outputParser = (location: locationType) => {
 }
 
 export const outputHandler = () => {
-  const locations = ['AIRPORT', 'CENTRAL']
+  const locations = ['CENTRAL', 'AIRPORT']
   locations.forEach(location => {
     console.log(outputParser(location as locationType))
   })
