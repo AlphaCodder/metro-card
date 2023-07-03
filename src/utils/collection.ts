@@ -1,5 +1,5 @@
 import fs from 'fs'
-import { locationType } from '../types'
+import { collection, locationType } from '../types'
 
 export const initCollection = async () => {
   const setCollection = {
@@ -16,15 +16,13 @@ export const initCollection = async () => {
 
 }
 
-export const getCollection = (location: locationType) => {
+export const getCollection = (location: locationType): collection => {
   const data = fs.readFileSync(`./src/data/${location}.json`, 'utf8')
   return JSON.parse(data)
 }
 
 export const setCollection = (location: locationType, collection: { total: number, discount: number }) => {
-  fs.writeFile(`./src/data/${location}.json`, JSON.stringify(collection), (err) => {
-    if (err) { throw err.message }
-  })
+  fs.writeFileSync(`./src/data/${location}.json`, JSON.stringify(collection), { encoding: 'utf8'})
 }
 
 export const updateCollection = (total: number, discount: number, location: locationType) => {

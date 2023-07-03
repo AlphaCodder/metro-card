@@ -1,17 +1,27 @@
-export interface card {
+export type card = {
     cardNumber : string
     balance : number
     discountApplied : boolean
 }
+
+export type collection = {
+    total: 0,
+    discount: 0
+} 
+
 export type passengerType = 'ADULT' | 'KID' | 'SENIOR_CITIZEN'
 
 export type locationType = 'CENTRAL' | 'AIRPORT'
 
-export const charges = {
+export const FARES = {
     ADULT: 200,
     KID: 50,
     SENIOR_CITIZEN : 100,
 }
+
+export const SFMULTIPLIER = 0.02
+
+export const DCMULTIPLIER = 0.5
 
 export interface BALANCE {
     operation : 'BALANCE'
