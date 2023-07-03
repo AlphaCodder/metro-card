@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "module": "commonjs",
-    "outDir": "dist"
+    "module": "commonjs"
   },
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "geektrust.ts"
   ],
   "exclude": [
     "node_modules"

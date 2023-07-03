@@ -1,6 +1,6 @@
 import * as fs from "fs"
-import { inputParser, inputHandler } from "./utils/input"
-import { initCollection } from './utils/collection'
+import { inputParser, inputHandler } from "./src/utils/input"
+import { initCollection } from './src/utils/collection'
 
 initCollection()
 
