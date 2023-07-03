@@ -1,6 +1,6 @@
-import fs from 'fs'
-import { DCMULTIPLIER, FARES, SFMULTIPLIER, card, collection, locationType, passengerType } from "../types";
-import { getCollection, updateCollection } from './collection';
+import * as fs from "fs"
+import { DCMULTIPLIER, FARES, SFMULTIPLIER, card, locationType, passengerType } from "../types";
+import { updateCollection } from './collection';
 
 export const saveCard = (newCard: card) => {
   fs.writeFileSync(

@@ -1,4 +1,4 @@
-import fs from 'fs'
+import * as fs from "fs"
 import { inputParser, inputHandler } from "./utils/input"
 import { initCollection } from './utils/collection'
 

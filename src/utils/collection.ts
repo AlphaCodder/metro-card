@@ -1,4 +1,4 @@
-import fs from 'fs'
+import * as fs from "fs"
 import { collection, locationType, passengerType } from '../types'
 
 export const initCollection = async () => {
