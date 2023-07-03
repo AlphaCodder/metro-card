@@ -43,8 +43,4 @@ export const updateCard = (cardNumber: string, passengerType: passengerType, fro
 
   saveCard(card)
   updateCollection(total, discount, fromStation)
-  console.log(getCollection(fromStation))
 }
-
-updateCard('MC1', 'ADULT', 'CENTRAL')
-updateCard('MC1', 'ADULT', 'AIRPORT')
