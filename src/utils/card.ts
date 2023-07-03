@@ -38,7 +38,7 @@ export const updateCard = (cardNumber: string, passengerType: passengerType, fro
     total += currentFare
     card.balance -= currentFare
   }
-  discount += currentFare * (card.discountApplied ? DCMULTIPLIER : 0)
+  discount += currentFare * (card.discountApplied ? 1 : 0)
   card.discountApplied = card.discountApplied ? false : true
 
   saveCard(card)
@@ -47,3 +47,4 @@ export const updateCard = (cardNumber: string, passengerType: passengerType, fro
 }
 
 updateCard('MC1', 'ADULT', 'CENTRAL')
+updateCard('MC1', 'ADULT', 'AIRPORT')
