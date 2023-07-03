@@ -42,5 +42,5 @@ export const updateCard = (cardNumber: string, passengerType: passengerType, fro
   card.discountApplied = card.discountApplied ? false : true
 
   saveCard(card)
-  updateCollection(total, discount, fromStation)
+  updateCollection(total, discount, fromStation, passengerType)
 }

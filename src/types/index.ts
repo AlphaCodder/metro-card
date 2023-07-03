@@ -7,6 +7,9 @@ export type card = {
 export type collection = {
     total: 0,
     discount: 0
+    passengerTypeSummary: {
+        [key in passengerType]?: number
+    }
 } 
 
 export type passengerType = 'ADULT' | 'KID' | 'SENIOR_CITIZEN'

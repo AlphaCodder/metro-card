@@ -1,10 +1,12 @@
 import fs from 'fs'
-import { collection, locationType } from '../types'
+import { collection, locationType, passengerType } from '../types'
 
 export const initCollection = async () => {
   const setCollection = {
     total: 0,
-    discount: 0
+    discount: 0,
+    passengerTypeSummary: {
+    }
   } 
 
   const locations = ['CENTRAL', 'AIRPORT']
@@ -25,9 +27,10 @@ export const setCollection = (location: locationType, collection: { total: numbe
   fs.writeFileSync(`./src/data/${location}.json`, JSON.stringify(collection), { encoding: 'utf8'})
 }
 
-export const updateCollection = (total: number, discount: number, location: locationType) => {
+export const updateCollection = (total: number, discount: number, location: locationType, passengerType: passengerType) => {
   const collection = getCollection(location)
   collection.total += total
   collection.discount += discount
+  collection.passengerTypeSummary[passengerType] = collection.passengerTypeSummary[passengerType] ? collection.passengerTypeSummary[passengerType] as unknown as number + 1 : 1
   setCollection(location, collection)
 }

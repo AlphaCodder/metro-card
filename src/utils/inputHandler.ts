@@ -1,6 +1,6 @@
 import { operation } from "../types"
 import { createCard, updateCard } from "./card"
-import { getCollection } from "./collection"
+import { outputHandler } from "./output"
 
 export const inputHandler = (input: operation) => {
   switch (input.operation) {
@@ -9,9 +9,7 @@ export const inputHandler = (input: operation) => {
     case 'CHECK_IN':
       return updateCard(input.cardNumber, input.passengerType, input.fromStation)
     case 'PRINT_SUMMARY':
-      console.log('AIRPORT', getCollection('AIRPORT'))
-      console.log('CENTRAL', getCollection('CENTRAL'))
-      return ''
+      return outputHandler()
     default:
       return `Invalid Input`
   }
