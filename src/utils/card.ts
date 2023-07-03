@@ -26,25 +26,24 @@ export const createCard = (cardNumber: string, balance: number) => {
 
 export const updateCard = (cardNumber: string, passengerType: passengerType, fromStation: locationType) => {
   const card: card = getCard(cardNumber)
-  const collection = getCollection(fromStation) as collection
+  var total = 0
+  var discount = 0
   const currentFare = FARES[passengerType] * (card.discountApplied ? DCMULTIPLIER : 1)
 
   if(card.balance < currentFare) {
-    collection.total += currentFare
-    collection.total += (currentFare - card.balance ) * SFMULTIPLIER
+    total += currentFare
+    total += (currentFare - card.balance ) * SFMULTIPLIER
     card.balance = 0
   } else {
+    total += currentFare
     card.balance -= currentFare
   }
-  collection.discount += currentFare * (card.discountApplied ? DCMULTIPLIER : 0)
+  discount += currentFare * (card.discountApplied ? DCMULTIPLIER : 0)
   card.discountApplied = card.discountApplied ? false : true
 
-  console.log('processes-------------?')
   saveCard(card)
-  console.log(getCard(cardNumber))
-  updateCollection(collection.discount, collection.total, fromStation)
-  console.log('card', card)
-  console.log('collection', collection)
+  updateCollection(total, discount, fromStation)
+  console.log(getCollection(fromStation))
 }
 
 updateCard('MC1', 'ADULT', 'CENTRAL')
